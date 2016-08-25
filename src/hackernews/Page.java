@@ -16,6 +16,8 @@ public class Page {
 
 	// Empty string to start
 	private static String	pageParam	= "";
+	
+	private final static String HOST_NAME = "http://news.ycombinator.com";
 
 	public static Post[] get(int page) {
 
@@ -27,7 +29,7 @@ public class Page {
 			Document doc = null;
 
 			try {
-				doc = Jsoup.connect("http://news.ycombinator.com" + pageParam)
+				doc = Jsoup.connect(HOST_NAME + pageParam)
 						.get();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -38,8 +40,8 @@ public class Page {
 			pageParam = pageElement.attr("href");
 		}
 
-		System.out.println("http://news.ycombinator.com" + pageParam);
-		return fetchPage("http://news.ycombinator.com" + pageParam);
+		System.out.println(HOST_NAME + pageParam);
+		return fetchPage(HOST_NAME + pageParam);
 	}
 
 	// Get the desired page number
